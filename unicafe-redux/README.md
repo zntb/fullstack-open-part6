@@ -101,3 +101,11 @@ In the tests, make sure that the reducer is an _immutable_ function with the _de
 Start by expanding the reducer so that both tests pass. Then add the rest of the tests, and finally the functionality that they are testing.
 
 A good model for the reducer is the [redux-notes](https://fullstackopen.com/en/part6/flux_architecture_and_redux#pure-functions-immutable) example above.
+
+## 6.2: Unicafe Revisited, step2
+
+Now implement the actual functionality of the application.
+
+Your application can have a modest appearance, nothing else is needed but buttons and the number of reviews for each type:
+
+![unicafe-redux1](./assets/50new.png)
