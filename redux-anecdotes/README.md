@@ -23,3 +23,9 @@ After completing these exercises, your application should look like this:
 ## 6.3: Anecdotes, step 1
 
 Implement the functionality for voting anecdotes. The number of votes must be saved to a Redux store.
+
+## 6.4: Anecdotes, step 2
+
+Implement the functionality for adding new anecdotes.
+
+You can keep the form uncontrolled like we did [earlier](https://fullstackopen.com/en/part6/flux_architecture_and_redux#uncontrolled-form).
