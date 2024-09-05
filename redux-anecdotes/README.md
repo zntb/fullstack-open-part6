@@ -29,3 +29,7 @@ Implement the functionality for voting anecdotes. The number of votes must be sa
 Implement the functionality for adding new anecdotes.
 
 You can keep the form uncontrolled like we did [earlier](https://fullstackopen.com/en/part6/flux_architecture_and_redux#uncontrolled-form).
+
+## 6.5: Anecdotes, step 3
+
+Make sure that the anecdotes are ordered by the number of votes.
