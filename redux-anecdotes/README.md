@@ -95,3 +95,15 @@ const Filter = () => {
 
 export default Filter;
 ```
+
+## Exercises 6.10.-6.13
+
+Let's continue working on the anecdote application using Redux that we started in exercise 6.3.s
+
+### 6.10 Better Anecdotes, step 8
+
+Install Redux Toolkit for the project. Move the Redux store creation into the file _store.js_ and use Redux Toolkit's `configureStore` to create the store.
+
+Change the definition of the _filter reducer_ and action _creators_ to use the Redux Toolkit's createSlice function.
+
+Also, start using Redux DevTools to debug the application's state easier.
