@@ -5,4 +5,4 @@ All exercises are saved in a separate commit.
 ## Exercises
 
 - [6.1-6.2: Unicafe Revisited, step 1-2](./unicafe-redux/)
-- [6.3-6.12: Anecdotes, step 1-10](./redux-anecdotes/)
+- [6.3-6.13: Anecdotes, step 1-11](./redux-anecdotes/)
