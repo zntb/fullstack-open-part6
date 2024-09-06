@@ -107,3 +107,19 @@ Install Redux Toolkit for the project. Move the Redux store creation into the fi
 Change the definition of the _filter reducer_ and action _creators_ to use the Redux Toolkit's createSlice function.
 
 Also, start using Redux DevTools to debug the application's state easier.
+
+### 6.11 Better Anecdotes, step 9
+
+Change also the definition of the anecdote reducer and action creators to use the Redux Toolkit's `createSlice` function.
+
+Implementation note: when you use the Redux Toolkit to return the initial state of anecdotes, it will be immutable, so you will need to make a copy of it to sort the anecdotes, or you will encounter the error "TypeError: Cannot assign to read only property". You can use the spread syntax to make a copy of the array. Instead of:
+
+```js
+anecdotes.sort();
+```
+
+Write:
+
+```js
+[...anecdotes].sort();
+```
