@@ -15,12 +15,19 @@ const Anecdote = ({ anecdote, handleClick }) => {
 
 const AnecdoteList = () => {
   const dispatch = useDispatch();
-  const anecdotes = useSelector(state => state);
-  const sortedAnecdotes = anecdotes.slice().sort((a, b) => b.votes - a.votes);
+
+  const anecdotes = useSelector(state => state.anecdotes);
+  const filter = useSelector(state => state.filter);
+
+  const filteredAnecdotes = anecdotes
+    .filter(anecdote =>
+      anecdote.content.toLowerCase().includes(filter.toLowerCase()),
+    )
+    .sort((a, b) => b.votes - a.votes);
 
   return (
     <div>
-      {sortedAnecdotes.map(anecdote => (
+      {filteredAnecdotes.map(anecdote => (
         <Anecdote
           key={anecdote.id}
           anecdote={anecdote}
