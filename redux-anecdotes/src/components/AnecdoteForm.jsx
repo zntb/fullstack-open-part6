@@ -5,18 +5,17 @@ import { setTimedNotification } from '../reducers/notificationReducer';
 const AnecdoteForm = () => {
   const dispatch = useDispatch();
 
-  const addAnecdote = async event => {
+  const addAnecdote = event => {
     event.preventDefault();
     const content = event.target.anecdote.value;
     event.target.anecdote.value = '';
-
     dispatch(createAnecdoteAsync(content));
-    dispatch(setTimedNotification(`You created '${content}'`, 5));
+    dispatch(setTimedNotification(`you created '${content}'`, 5));
   };
 
   return (
     <>
-      <h2>Create new</h2>
+      <h2>create new</h2>
       <form onSubmit={addAnecdote}>
         <div>
           <input name='anecdote' />

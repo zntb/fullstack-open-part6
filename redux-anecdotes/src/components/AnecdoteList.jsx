@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { voteAnecdote } from '../reducers/anecdoteReducer';
+import { voteAnecdoteAsync } from '../reducers/anecdoteReducer';
 import { setTimedNotification } from '../reducers/notificationReducer';
 
 const Anecdote = ({ anecdote, handleClick }) => {
@@ -19,14 +19,14 @@ const AnecdoteList = () => {
   const anecdotes = useSelector(state => state.anecdotes);
   const filter = useSelector(state => state.filter);
 
-  const filteredAnecdotes = anecdotes.filter(anecdote =>
-    anecdote.content && filter
-      ? anecdote.content.toLowerCase().includes(filter.toLowerCase())
-      : true,
-  );
+  const filteredAnecdotes = anecdotes
+    .filter(anecdote =>
+      anecdote.content.toLowerCase().includes(filter.toLowerCase()),
+    )
+    .sort((a, b) => b.votes - a.votes);
 
   const handleVote = anecdote => {
-    dispatch(voteAnecdote(anecdote.id));
+    dispatch(voteAnecdoteAsync(anecdote));
     dispatch(setTimedNotification(`you voted '${anecdote.content}'`, 5));
   };
 

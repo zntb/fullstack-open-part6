@@ -12,11 +12,9 @@ const anecdoteSlice = createSlice({
       state.push(action.payload);
     },
     voteAnecdote(state, action) {
-      const id = action.payload;
+      const updatedAnecdote = action.payload;
       return state.map(anecdote =>
-        anecdote.id === id
-          ? { ...anecdote, votes: anecdote.votes + 1 }
-          : anecdote,
+        anecdote.id === updatedAnecdote.id ? updatedAnecdote : anecdote,
       );
     },
   },
@@ -33,6 +31,20 @@ export const initializeAnecdotes = () => {
   return async dispatch => {
     const anecdotes = await anecdoteService.getAllAnecdotes();
     dispatch(setAnecdotes(anecdotes));
+  };
+};
+
+export const voteAnecdoteAsync = anecdote => {
+  return async dispatch => {
+    const updatedAnecdote = {
+      ...anecdote,
+      votes: anecdote.votes + 1,
+    };
+    const response = await anecdoteService.updateAnecdote(
+      anecdote.id,
+      updatedAnecdote,
+    );
+    dispatch(voteAnecdote(response));
   };
 };
 
