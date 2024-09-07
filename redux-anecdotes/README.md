@@ -168,3 +168,11 @@ Extend the application so that it uses the _Notification_ component to display a
 ![Better anecdotes](./assets/8ea.png)
 
 It's recommended to create separate [action creators](https://redux-toolkit.js.org/api/createSlice#reducers) for setting and removing notifications.
+
+## Exercises 6.14.-6.15
+
+### 6.14 Anecdotes and the Backend, step 1
+
+When the application launches, fetch the anecdotes from the backend implemented using json-server.
+
+As the initial backend data, you can use, e.g. [this](https://github.com/fullstack-hy2020/misc/blob/master/anecdotes.json).
