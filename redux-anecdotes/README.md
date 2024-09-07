@@ -180,3 +180,9 @@ As the initial backend data, you can use, e.g. [this](https://github.com/fullsta
 ### 6.15 Anecdotes and the Backend, step 2
 
 Modify the creation of new anecdotes, so that the anecdotes are stored in the backend.
+
+## Exercises 6.16.-6.19
+
+### 6.16 Anecdotes and the Backend, step 3
+
+Modify the initialization of the Redux store to happen using asynchronous action creators, which are made possible by the Redux Thunk library.
