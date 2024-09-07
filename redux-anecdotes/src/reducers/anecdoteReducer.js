@@ -22,29 +22,41 @@ const anecdoteSlice = createSlice({
 
 export const createAnecdoteAsync = content => {
   return async dispatch => {
-    const newAnecdote = await anecdoteService.createAnecdote(content);
-    dispatch(createAnecdote(newAnecdote));
-  };
-};
-
-export const initializeAnecdotes = () => {
-  return async dispatch => {
-    const anecdotes = await anecdoteService.getAllAnecdotes();
-    dispatch(setAnecdotes(anecdotes));
+    try {
+      const newAnecdote = await anecdoteService.createAnecdote(content);
+      dispatch(createAnecdote(newAnecdote));
+    } catch (error) {
+      console.error('Failed to create anecdote:', error);
+    }
   };
 };
 
 export const voteAnecdoteAsync = anecdote => {
   return async dispatch => {
-    const updatedAnecdote = {
-      ...anecdote,
-      votes: anecdote.votes + 1,
-    };
-    const response = await anecdoteService.updateAnecdote(
-      anecdote.id,
-      updatedAnecdote,
-    );
-    dispatch(voteAnecdote(response));
+    try {
+      const updatedAnecdote = {
+        ...anecdote,
+        votes: anecdote.votes + 1,
+      };
+      const response = await anecdoteService.updateAnecdote(
+        anecdote.id,
+        updatedAnecdote,
+      );
+      dispatch(voteAnecdote(response));
+    } catch (error) {
+      console.error('Failed to vote for anecdote:', error);
+    }
+  };
+};
+
+export const initializeAnecdotes = () => {
+  return async dispatch => {
+    try {
+      const anecdotes = await anecdoteService.getAllAnecdotes();
+      dispatch(setAnecdotes(anecdotes));
+    } catch (error) {
+      console.error('Failed to fetch anecdotes:', error);
+    }
   };
 };
 

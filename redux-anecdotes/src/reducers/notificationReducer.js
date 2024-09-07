@@ -1,27 +1,44 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
+export const setNotificationAsync = createAsyncThunk(
+  'notifications/setNotificationAsync',
+  async ({ message, duration }, { dispatch, getState }) => {
+    const { timeoutId } = getState().notifications;
+
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    const newTimeoutId = setTimeout(() => {
+      dispatch(clearNotification());
+    }, duration * 1000);
+
+    return { message, timeoutId: newTimeoutId };
+  },
+);
 
 const notificationSlice = createSlice({
-  name: 'notification',
-  initialState: '',
+  name: 'notifications',
+  initialState: {
+    message: null,
+    timeoutId: null,
+  },
   reducers: {
-    setNotification(state, action) {
-      return action.payload;
+    clearNotification(state) {
+      if (state.timeoutId) {
+        clearTimeout(state.timeoutId);
+      }
+      state.message = null;
+      state.timeoutId = null;
     },
-    clearNotification() {
-      return '';
-    },
+  },
+  extraReducers: builder => {
+    builder.addCase(setNotificationAsync.fulfilled, (state, action) => {
+      state.message = action.payload.message;
+      state.timeoutId = action.payload.timeoutId;
+    });
   },
 });
 
-export const { setNotification, clearNotification } = notificationSlice.actions;
-
-export const setTimedNotification = (message, timeInSeconds) => {
-  return async dispatch => {
-    dispatch(setNotification(message));
-    setTimeout(() => {
-      dispatch(clearNotification());
-    }, timeInSeconds * 1000);
-  };
-};
-
+export const { clearNotification } = notificationSlice.actions;
 export default notificationSlice.reducer;
