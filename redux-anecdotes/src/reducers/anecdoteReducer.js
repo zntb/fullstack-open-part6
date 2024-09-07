@@ -9,15 +9,15 @@ import { createSlice } from '@reduxjs/toolkit';
 //   'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
 // ];
 
-const getId = () => (100000 * Math.random()).toFixed(0);
+// const getId = () => (100000 * Math.random()).toFixed(0);
 
-const asObject = anecdote => {
-  return {
-    content: anecdote,
-    id: getId(),
-    votes: 0,
-  };
-};
+// const asObject = anecdote => {
+//   return {
+//     content: anecdote,
+//     id: getId(),
+//     votes: 0,
+//   };
+// };
 
 // const initialState = anecdotesAtStart.map(asObject);
 
@@ -25,6 +25,10 @@ const anecdoteSlice = createSlice({
   name: 'anecdotes',
   initialState: [],
   reducers: {
+    createAnecdote(state, action) {
+      const newAnecdote = action.payload;
+      state.push(newAnecdote);
+    },
     voteAnecdote(state, action) {
       const id = action.payload;
       return state.map(anecdote =>
@@ -33,9 +37,8 @@ const anecdoteSlice = createSlice({
           : anecdote,
       );
     },
-    createAnecdote(state, action) {
-      const newAnecdote = asObject(action.payload);
-      state.push(newAnecdote);
+    appendAnecdote(state, action) {
+      state.push(action.payload);
     },
     setAnecdotes(state, action) {
       return action.payload;
@@ -43,6 +46,6 @@ const anecdoteSlice = createSlice({
   },
 });
 
-export const { voteAnecdote, createAnecdote, setAnecdotes } =
+export const { voteAnecdote, createAnecdote, appendAnecdote, setAnecdotes } =
   anecdoteSlice.actions;
 export default anecdoteSlice.reducer;
