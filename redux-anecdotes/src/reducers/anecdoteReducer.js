@@ -22,17 +22,17 @@ const anecdoteSlice = createSlice({
   },
 });
 
-export const initializeAnecdotes = () => {
-  return async dispatch => {
-    const anecdotes = await anecdoteService.getAllAnecdotes();
-    dispatch(setAnecdotes(anecdotes));
-  };
-};
-
 export const createAnecdoteAsync = content => {
   return async dispatch => {
     const newAnecdote = await anecdoteService.createAnecdote(content);
     dispatch(createAnecdote(newAnecdote));
+  };
+};
+
+export const initializeAnecdotes = () => {
+  return async dispatch => {
+    const anecdotes = await anecdoteService.getAllAnecdotes();
+    dispatch(setAnecdotes(anecdotes));
   };
 };
 
