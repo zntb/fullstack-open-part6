@@ -11,3 +11,6 @@ export const getAnecdotes = () =>
         'Anecdote service not available due to problems in server.',
       );
     });
+
+export const createAnecdote = newAnecdote =>
+  axios.post(baseUrl, newAnecdote).then(res => res.data);
