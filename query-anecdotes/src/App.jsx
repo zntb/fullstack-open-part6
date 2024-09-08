@@ -3,9 +3,12 @@ import { getAnecdotes, updateAnecdote } from './requests';
 
 import AnecdoteForm from './components/AnecdoteForm';
 import Notification from './components/Notification';
+import { useNotification } from './NotificationContext';
 
 const App = () => {
   const queryClient = useQueryClient();
+
+  const [_, dispatch] = useNotification();
 
   const {
     isLoading,
@@ -25,8 +28,17 @@ const App = () => {
         votes: anecdote.votes + 1,
       });
     },
-    onSuccess: () => {
+    onSuccess: updatedAnecdote => {
       queryClient.invalidateQueries({ queryKey: ['anecdotes'] });
+
+      dispatch({
+        type: 'SET_NOTIFICATION',
+        payload: `Anecdote '${updatedAnecdote.content}' voted!`,
+      });
+
+      setTimeout(() => {
+        dispatch({ type: 'CLEAR_NOTIFICATION' });
+      }, 5000);
     },
   });
 
