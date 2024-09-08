@@ -51,3 +51,13 @@ Implement the application's notification state management using the useReducer h
 ![Exercise 6.23 image](./assets/66new.png)
 
 The notification is displayed for five seconds.
+
+### Exercise 6.24
+
+As stated in exercise 6.21, the server requires that the content of the anecdote to be added is at least 5 characters long. Now implement error handling for the insertion. In practice, it is sufficient to display a notification to the user in case of a failed POST request:
+
+![Exercise 6.24 image](./assets/67new.png)
+
+The error condition should be handled in the callback function registered for it, see [here](https://tanstack.com/query/latest/docs/framework/react/reference/useMutation) how to register a function.
+
+This was the last exercise for this part of the course and it's time to push your code to GitHub and mark all of your completed exercises to the exercise [submission system](https://studies.cs.helsinki.fi/stats/courses/fullstackopen).

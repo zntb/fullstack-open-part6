@@ -20,6 +20,16 @@ const AnecdoteForm = () => {
         dispatch({ type: 'CLEAR_NOTIFICATION' });
       }, 5000);
     },
+    onError: (error, variables, context) => {
+      dispatch({
+        type: 'SET_NOTIFICATION',
+        payload: `Failed to create anecdote: ${error.message}`,
+      });
+
+      setTimeout(() => {
+        dispatch({ type: 'CLEAR_NOTIFICATION' });
+      }, 5000);
+    },
   });
 
   const onCreate = event => {
@@ -27,7 +37,13 @@ const AnecdoteForm = () => {
     const content = event.target.anecdote.value;
 
     if (content.length < 5) {
-      alert('Anecdote must be at least 5 characters long.');
+      dispatch({
+        type: 'SET_NOTIFICATION',
+        payload: 'Too short anecdote, must have length 5 or more.',
+      });
+      setTimeout(() => {
+        dispatch({ type: 'CLEAR_NOTIFICATION' });
+      }, 5000);
       return;
     }
 
